@@ -8,12 +8,26 @@
 <title>상품등록</title>
 
 <link rel="stylesheet" href="/css/admin.css" type="text/css">
-
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript" src="../javascript/calendar.js">
 </script>
 <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Datepicker - Default functionality</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script type="text/javascript">
 
+$( function() {
+    $( "#manuDate" ).datepicker({
+      showButtonPanel: true
+    });
+  } );
 
 /* <!--
 function fncAddProduct(){
@@ -79,19 +93,37 @@ function fncAddProduct() {
 	$(function() {
 	//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
 	//==> 1 과 3 방법 조합 : $("tagName.className:filter함수") 사용함.	
-	 $( "td.ct_btn01:contains('등록')" ).on("click" , function() {
+	 
+	$("#manuDate").click(function() {
+    var manuDateValue = $("#manuDate").val(); // manuDate 요소의 값을 가져옴
+    show_calendar('document.detailForm.manuDate', manuDateValue); // 클릭 이벤트 핸들러의 기존 동작 호출
+ 	 });
+	$( function() {
+	    $( "#datepicker" ).datepicker();
+	  } );
+	
+	$( "td.ct_btn01:contains('등록')" ).on("click" , function() {
 			fncAddProduct();
 		});	
 		 $( "td.ct_btn01:contains('취소')" ).on("click" , function() {
 					$("form")[0].reset();
 			});
-		});	
-		 
+		
+	});
+
+
+	 
+	 
+	
+	 
+	 
 
 </script>
 </head>
 
 <body bgcolor="#ffffff" text="#000000">
+
+ 
 
 <form name="detailForm" method="post">
 
@@ -108,6 +140,7 @@ function fncAddProduct() {
 				</tr>
 			</table>
 		</td>
+		
 		<td width="12" height="37">
 			<img src="/images/ct_ttl_img03.gif"	width="12" height="37"/>
 		</td>
@@ -158,10 +191,12 @@ function fncAddProduct() {
 		<td class="ct_write01">
 			<input type="text" name="manuDate" readonly="readonly" class="ct_input_g"  
 						style="width: 100px; height: 19px"	maxLength="10" minLength="6"/>
-				&nbsp;<img src="../images/ct_icon_date.gif" width="15" height="15" 
-										onclick="show_calendar('document.detailForm.manuDate', document.detailForm.manuDate.value)"/>
+						<input type="text" id="datepicker" style="width: 100px; height: 19px;" maxLength="10" minLength="6">
+ 
+
 		</td>
 	</tr>
+	
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
 	</tr>

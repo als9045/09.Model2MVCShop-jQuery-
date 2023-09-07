@@ -41,9 +41,22 @@
 			//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
 			//==> 3 과 1 방법 조합 : $(".className tagName:filter함수") 사용함.
 			$( ".ct_list_pop td:nth-child(3)" ).on("click" , function() {
-					//Debug..
-					//alert(  $( this ).text().trim() );
-					self.location ="/product/getProduct?prodNo="+$(this).text().trim();
+					
+				
+			
+				var name =  $(this).closest(".ct_list_pop");
+				var prodNo = name.find("td:nth-child(5)").text().trim();
+				alert("값 확인: " + prodNo);
+				
+				var menu = "${menu}";
+				alert("값 확인: " + menu);
+				if(menu ==='manage'){
+					self.location = "/product/updateProduct?prodNo=" +prodNo;
+				}else{
+				
+		          self.location = "/product/listProduct?prodNo=" +prodNo;
+		      
+				}
 			});
 			
 			//==> UI 수정 추가부분  :  userId LINK Event End User 에게 보일수 있도록 
@@ -175,15 +188,7 @@ function fncGetproductList(currentPage) {
 		<tr class="ct_list_pop">
 			<td align="center">${ i }</td>
 			<td></td>
-			<td align="left">
-			<c:choose>
-			<c:when test = "${'manage' eq menu }">
-			<a href="/product/updateProduct?prodNo=${product.prodNo}">${product.prodName}</a>
-			</c:when>
-			<c:when test = "${'search' eq menu }">
-			<a href="/product/lisProduct?prodNo=${product.prodNo}">${product.prodName}</a>
-			</c:when>
-			</c:choose>
+			<td align="left"width="120">${product.prodName}</td>
 			<td></td>
 			<td align="left"width="120">${product.prodNo}</td>
 			<td></td>
