@@ -54,7 +54,7 @@ public class ProductController {
 	public String addProduct() throws Exception{
 		System.out.println("/product/addProduct :GET");
 		
-		return "redirect:/product/addProductView.jsp";
+		return "redirect:/product/getProduct.jsp";
 	}
 	
 	//@RequestMapping("/addProduct.do")
@@ -67,6 +67,7 @@ public class ProductController {
 		
 		// Model °ú View ¿¬°á
 		model.addAttribute("product", product);
+		
 		return "forward:/product/getProduct.jsp";
 	}
 	

@@ -20,15 +20,8 @@
   <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/resources/demos/style.css">
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
-
-$( function() {
-    $( "#manuDate" ).datepicker({
-      showButtonPanel: true
-    });
-  } );
-
 /* <!--
 function fncAddProduct(){
 	//Form 유효성 검증
@@ -69,7 +62,7 @@ function fncAddProduct() {
 	var detail = $("input[name ='prodDetail']").val();
 	var manuDate = $("input[name ='manuDate']").val();
 	var price = $("input[name = 'price']").val();
-
+	console.log("cex")
 	if(name == null || name.length<1){
 		alert("상품명은 반드시 입력하여야 합니다.");
 		return;
@@ -86,28 +79,30 @@ function fncAddProduct() {
 		alert("가격은 반드시 입력하셔야 합니다.");
 		return;
 	}
-
+	
 	$("form").attr("method" , "POST").attr("action" , "/product/addProduct").submit();
 }
 
 	$(function() {
-	//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-	//==> 1 과 3 방법 조합 : $("tagName.className:filter함수") 사용함.	
-	 
-	$("#manuDate").click(function() {
-    var manuDateValue = $("#manuDate").val(); // manuDate 요소의 값을 가져옴
-    show_calendar('document.detailForm.manuDate', manuDateValue); // 클릭 이벤트 핸들러의 기존 동작 호출
- 	 });
-	$( function() {
-	    $( "#datepicker" ).datepicker();
-	  } );
+		
+	$("#calImg").on("click",function(){
+	$("input:text[name='manuDate']").val(null);
+	var manuDate = $("input:text[name='manuDate']");
+	show_calendar("document.getElementsByTagName('input')[2]", manuDate[0].value);   
+	}) ;
+}) ;
 	
-	$( "td.ct_btn01:contains('등록')" ).on("click" , function() {
-			fncAddProduct();
-		});	
+	$(function() {
+	$( "td.ct_btn01\:contains('등록')" ).on("click" , function() {
+	
+		fncAddProduct();				
+	});	
+	});	
+	
+	$(function() {
 		 $( "td.ct_btn01:contains('취소')" ).on("click" , function() {
 					$("form")[0].reset();
-			});
+	});
 		
 	});
 
@@ -191,7 +186,8 @@ function fncAddProduct() {
 		<td class="ct_write01">
 			<input type="text" name="manuDate" readonly="readonly" class="ct_input_g"  
 						style="width: 100px; height: 19px"	maxLength="10" minLength="6"/>
-						<input type="text" id="datepicker" style="width: 100px; height: 19px;" maxLength="10" minLength="6">
+		
+		&nbsp; <img id="calImg" src="../images/ct_icon_date.gif" width="15" height="15" />
  
 
 		</td>
