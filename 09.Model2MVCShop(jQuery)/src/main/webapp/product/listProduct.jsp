@@ -21,7 +21,7 @@
 			//document.getElementById("currentPage").value = currentPage;
 			$("#currentPage").val(currentPage)
 		   	//document.detailForm.submit();
-			$("form").attr("method" , "POST").attr("action" , "/product/listProduct").submit();
+			$("form").attr("method" , "POST").attr("enctype","multipart/form-data").attr("action" , "/product/listProduct").submit();
 		}
 		//===========================================//
 		//==> 추가된부분 : "검색" ,  userId link  Event 연결 및 처리
